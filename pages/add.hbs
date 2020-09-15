@@ -1,0 +1,29 @@
+<h2> Добавить курс </h2>
+
+ <form action="/add" method="POST">
+  <div class="form-group">
+    <label for="title">Название курса</label>
+    <input required type="text" name="title" class="form-control" id="title">
+  </div>
+  
+    <div class="form-group">
+        <label for="price">Цена курса</label>
+        <input required type="number" name="price" min="1" class="form-control" id="price">
+    </div>
+
+    <div class="form-group">
+        <label for="image">URL картинки</label>
+        <input type="text" name="image" class="form-control"  id="image" aria-describedby="imgHelp">
+        <div class="invalid-feedback">
+            Please provide a valid url.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Описание</label>
+         <textarea class="form-control" name="description" id="description" placeholder="Описание курса"></textarea>
+    </div>
+
+  <button class="btn btn-outline-primary">Добать курс</button>
+</form> 
+
