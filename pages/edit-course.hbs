@@ -1,11 +1,13 @@
 
 <h2>Редактировать {{course.title}}</h2>
 
-<div class="category eidt-category card">
+<section class="categories">
+
+    <div class="category eidt-category card">
         <img src="{{course.img}}" class="card-img-top" alt="{{course.title}}">
         <div class="card-body">
             <h5 class="card-title">{{course.title}}</h5>
-            <h5 class="card-title">{{course.price}} $</h5>
+            <h5 class="card-title"><span>{{course.price}}</span> $</h5>
             <p class="card-text">{{course.description}}</p>
             <button class="btn btn-success" disabled>Купить</button>
             <button class="btn btn-outline-warning" disabled>Подробнее</button>
@@ -13,3 +15,37 @@
             <button class="btn btn-outline-danger" disabled> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
         </div>
     </div>
+
+    <div class="edit-card">
+        <form action="/course/edit" method="POST">
+            <div class="form-group">
+                <label for="title">Название курса</label>
+                <input required type="text" name="title" class="form-control" id="edit-title"  value="{{course.title}}"  >
+            </div>
+            
+                <div class="form-group">
+                    <label for="price">Цена курса</label>
+                    <input required type="number" name="price" min="1" class="form-control" id="edit-price"  value="{{course.price}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="image">URL картинки</label>
+                    <input type="text" name="image" class="form-control"  id="edit-image" aria-describedby="imgHelp" value="{{course.img}}">
+                    <div class="invalid-feedback">
+                        Please provide a valid url.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea class="form-control" name="description" id="edit-description" placeholder="{{course.description}}"></textarea>
+                </div>
+
+                <input type="hidden" name="id" value="{{course.id}}">
+
+            <button style="margin-top: 30px;" class="btn btn-outline-primary">Редактировать курс</button>
+        </form> 
+    </div>
+
+</section>
+
