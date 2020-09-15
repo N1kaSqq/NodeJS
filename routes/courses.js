@@ -33,6 +33,14 @@ router.get('/courses/:id/edit', async (req, res)=>{
 
 })
 
+router.post('/courses/edit', async (req, res)=>{
+    /* console.log(req.body); */
+    const updatedCourse = req.body  //курс который нужно обновить 
+    await Course.editCourse(updatedCourse);
+
+    res.redirect('/courses');
+})
+
 router.get('/courses/:id', async (req, res) => {
 
     const course = await Course.getByID(req.params.id);

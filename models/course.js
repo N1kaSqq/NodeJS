@@ -58,6 +58,29 @@ class Course {
         })
     }
 
+    static async editCourse(updatedCourse){
+        /* console.log(updatedCourse); */
+        const allCourses = await Course.getAll();
+        const index = allCourses.findIndex((item)=>(item.id === updatedCourse.id));
+        allCourses[index] = updatedCourse;
+
+        return new Promise((resolve, reject) => {  // сохраняем новые курсы в файле
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'courses.json'),
+                JSON.stringify(allCourses),
+                (err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                }
+            )
+        })
+
+
+    }
+
     static async getByID(id) { // поиск курса по его id
         const AllCourses = await Course.getAll();
         const current = AllCourses.find((item)=>{
