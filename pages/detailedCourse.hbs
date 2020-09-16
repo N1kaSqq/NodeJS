@@ -5,7 +5,10 @@
     <h5 class="card-title">{{course.title}}</h5>
     <h5 class="card-title">{{course.price}} $</h5>
     <p class="card-text">{{course.description}}</p>
-    <button style="padding-left: 20px; padding-right: 20px" class="btn btn-success">Купить</button>
+    <form style="display: inline;" action="/cart/add" method="POST">
+        <input type="hidden" name="id" value="{{course.id}}">
+        <button class="btn btn-success">Купить</button>
+    </form>
     <a href="/courses/{{course.id}}/edit?allow=true"  class="btn btn-outline-warning"> <img style="height: 20px; width: 17px;" src="/img/edit.svg" alt=""></a>
     <button class="btn btn-outline-danger"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
 </section>

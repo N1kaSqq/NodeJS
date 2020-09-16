@@ -9,6 +9,7 @@ const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
 const aboutRoutes = require('./routes/about')
+const cartRoutes = require('./routes/cart')
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -56,7 +57,7 @@ app.use(homeRoutes);
 app.use(aboutRoutes);
 app.use(coursesRoutes);
 app.use(addRoutes);
-
+app.use(cartRoutes);
 
 
 

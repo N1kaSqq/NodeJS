@@ -11,6 +11,7 @@ router.get('/add', (req, res)=>{
     })
 })
 
+
 router.post('/add', async (req, res) => {
 
     req.body.image == '' ? req.body.image = '/img/default.jpg' : null
