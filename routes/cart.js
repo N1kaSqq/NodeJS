@@ -9,7 +9,6 @@ router.post('/cart/add', async (req, res)=>{
 
     await Cart.add(course)                 
     res.redirect('/cart');
-    
 })
 
 
@@ -18,9 +17,17 @@ router.get('/cart', async (req, res)=>{
     const cart = await Cart.getCart();
 
     res.render('cart',{
-        title : 'Корзина'
+        title : 'Корзина',
+        courses: cart.courses,
+        price: cart.price
     })
     
 }) 
+
+router.post('/cart/deleteAll', async (req, res)=>{
+ 
+     await Cart.deleteAll()                 
+     res.redirect('/');
+ })
 
 module.exports = router
