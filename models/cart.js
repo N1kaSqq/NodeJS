@@ -60,9 +60,65 @@ class Cart {
         })
     }
 
-    static async deleteAll(){
-        
+    static async remove(id){
+
+        const cart = await Cart.getCart();
+
+        const index = cart.courses.findIndex((item) => item.id === id )
+        const course = cart.courses[index];
+
+        if (!cart.courses[index]) {
+            return
+        }
+
+        if (course && course.count === 1) {
+            // нужно удалить курс
+            cart.courses = cart.courses.filter(item => item.id !== id)
+        } else {
+            // изменяем количество
+            cart.courses[index].count--;
+        }
+
+        cart.price -= course.price;
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'cart.json'),
+                JSON.stringify(cart), 
+                err => {
+              if (err) {
+                reject(err)
+              } else {
+                resolve()
+              }
+            })
+        })
     }
+
+    static async deleteAll(){
+
+        const empty = {
+            courses: [],
+            price: 0
+        }
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'cart.json'),
+                JSON.stringify(empty), 
+                err => {
+              if (err) {
+                reject(err)
+              } else {
+                resolve()
+              }
+            })
+        })
+
+    }
+
+
+    
 }
 
 module.exports = Cart

@@ -24,10 +24,18 @@ router.get('/cart', async (req, res)=>{
     
 }) 
 
-router.post('/cart/deleteAll', async (req, res)=>{
- 
-     await Cart.deleteAll()                 
-     res.redirect('/');
- })
+router.delete('/cart/remove/:id', async (req, res)=>{
+
+    await Cart.remove(req.params.id);
+    const cart = await Cart.getCart();
+
+    res.json(cart)
+})
+
+router.post('/cart/deleteAll', async (req, res)=>{   
+
+    await Cart.deleteAll();     
+    res.redirect('/cart');
+})
 
 module.exports = router

@@ -50,7 +50,8 @@ app.get('/add', (req, res)=>{
     })
 }) */
 
-app.use(express.static('public'));
+/* app.use(express.static('public')); */
+app.use(express.static(path.join(__dirname, 'public'))); // лучше таким способом
 app.use(express.urlencoded({extended: true}))
 
 app.use(homeRoutes);
