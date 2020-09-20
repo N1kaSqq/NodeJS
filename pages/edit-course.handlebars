@@ -17,7 +17,7 @@
     </div>
 
     <div class="edit-card">
-        <form action="/courses/edit" method="POST">
+        <form style="display: inline;" action="/courses/edit" method="POST">
             <div class="form-group">
                 <label for="edit-title">Название курса</label>
                 <input required type="text" name="title" class="form-control" id="edit-title"  value="{{course.title}}"  >
@@ -45,6 +45,11 @@
 
             <button style="margin-top: 30px;" class="btn btn-outline-primary">Редактировать курс</button>
         </form> 
+        <form style="display: inline;" action="/courses/remove" method="POST">
+            <input type="hidden" name="id" value="{{course._id}}">
+            <button style="margin-top: 30px; margin-left: 10px;" class="btn btn-outline-danger">Удалить курс</button>
+        </form>
+        
     </div>
 
 </section>

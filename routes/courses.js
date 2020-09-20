@@ -22,7 +22,7 @@ router.get('/courses/:id/edit', async (req, res)=>{
     }
     /* const course = await Course.getByID(req.params.id); */ // fileDB
     /* console.log(course); */
-    const course = await Course.findByID(req.params.id);
+    const course = await Course.findById(req.params.id);
 
     try {
         res.render('edit-course', {
@@ -48,7 +48,7 @@ router.post('/courses/edit', async (req, res)=>{
 
 router.get('/courses/:id', async (req, res) => {
     /* const course = await Course.getByID(req.params.id); */ // fileDB
-    const course = await Course.findByID(req.params.id);
+    const course = await Course.findById(req.params.id);
     /* console.log(course); */
 
     try {
@@ -61,6 +61,17 @@ router.get('/courses/:id', async (req, res) => {
         res.redirect('/')
     }
 
+})
+
+router.post('/courses/remove', async (req, res)=>{
+    try {
+        await Course.deleteOne({
+            _id: req.body.id, 
+        })
+        res.redirect('/courses')
+    } catch (error) {
+       console.log(error); 
+    }
 })
 
 module.exports = router

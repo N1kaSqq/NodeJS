@@ -27,7 +27,7 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars') 
 app.set('views', 'pages')
-
+mongoose.set('useFindAndModify', false);
 /* app.get('/', (req, res)=>{
     // res.sendFile(path.join(__dirname, 'pages', 'index.html')) // without nandllebars 
     res.render('index', {
