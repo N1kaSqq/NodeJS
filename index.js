@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose')
+const Handlebars = require('handlebars')
 const exphbs = require('express-handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 
 const app = express();
 
@@ -11,13 +14,18 @@ const coursesRoutes = require('./routes/courses')
 const aboutRoutes = require('./routes/about')
 const cartRoutes = require('./routes/cart')
 
-const hbs = exphbs.create({
+/* const hbs = exphbs.create({
     defaultLayout: 'main',
     extname: 'hbs',
-})
+}) */
 
-app.engine('hbs', hbs.engine)
-app.set('view engine', 'hbs')
+/* app.engine('hbs', hbs.engine) */
+
+app.engine('handlebars', exphbs({
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+}));
+
+app.set('view engine', 'handlebars') 
 app.set('views', 'pages')
 
 /* app.get('/', (req, res)=>{
@@ -62,10 +70,26 @@ app.use(cartRoutes);
 
 
 
-
+const MongoPassword = 'Ea7dP4H57g43Lihn';
+const MongoName = 'Nikita';
+const MongoURL = `mongodb+srv://Nikita:Ea7dP4H57g43Lihn@cluster0.tegas.mongodb.net/Shop`
 
 const PORT = process.env.PORT || 3000 ;
 
-app.listen(PORT , ()=>{
-    console.log(`server is running on port ${PORT}`);
-});
+
+(async function start(){
+    try {
+        await mongoose.connect(MongoURL, {
+            useNewUrlParser: true, 
+            useUnifiedTopology: true
+        });
+
+        app.listen(PORT , ()=>{
+            console.log(`server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+})();
+
+

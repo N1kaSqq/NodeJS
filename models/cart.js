@@ -2,9 +2,6 @@ const fs = require('fs')
 const path = require('path')
 
 class Cart {
-    constructor(){
-
-    }
 
     static async add(course){
         const cart = await Cart.getCart();

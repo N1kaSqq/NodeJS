@@ -4,7 +4,8 @@ const router = Router()
 
 router.get('/courses', async (req, res) => {
 
-    const allCourses = await Course.getAll();
+    /* const allCourses = await Course.getAll(); */ // file DB
+    const allCourses = await Course.find();
 
     res.render('courses', { 
         title: 'Курсы',
@@ -19,8 +20,9 @@ router.get('/courses/:id/edit', async (req, res)=>{
     if(!req.query.allow){
         return res.redirect('/')
     }
-    const course = await Course.getByID(req.params.id);
+    /* const course = await Course.getByID(req.params.id); */ // fileDB
     /* console.log(course); */
+    const course = await Course.findByID(req.params.id);
 
     try {
         res.render('edit-course', {
@@ -35,15 +37,18 @@ router.get('/courses/:id/edit', async (req, res)=>{
 
 router.post('/courses/edit', async (req, res)=>{
     /* console.log(req.body); */
-    const updatedCourse = req.body  //курс который нужно обновить 
-    await Course.editCourse(updatedCourse);
+    /* const updatedCourse = req.body  //курс который нужно обновить 
+    await Course.editCourse(updatedCourse); */
+    const {id} = req.body;
+    delete req.body.id;
+    await Course.findByIdAndUpdate(id, req.body)
 
     res.redirect('/courses');
 })
 
 router.get('/courses/:id', async (req, res) => {
-
-    const course = await Course.getByID(req.params.id);
+    /* const course = await Course.getByID(req.params.id); */ // fileDB
+    const course = await Course.findByID(req.params.id);
     /* console.log(course); */
 
     try {
