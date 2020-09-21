@@ -22,6 +22,7 @@ router.post('/add', async (req, res) => {
         price: req.body.price,
         img: req.body.image,
         description: req.body.description,
+        userId: req.user._id,
     })
 
     try {
