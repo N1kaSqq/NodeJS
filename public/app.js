@@ -18,8 +18,8 @@ if ($cart) {
                             <td>${item.title}</td>
                             <td>${item.count}</td>
                             <td>
-                                <a href="/courses/${item.id}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
-                                <button class="btn btn-outline-danger js-remove" data-id="${item.id}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
+                                <a href="/courses/${item._id}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
+                                <button class="btn btn-outline-danger js-remove" data-id="${item._id}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
                             </td>
                           </tr>
                             `

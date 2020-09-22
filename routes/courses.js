@@ -7,7 +7,7 @@ router.get('/courses', async (req, res) => {
     /* const allCourses = await Course.getAll(); */ // file DB
     const allCourses = await Course.find().populate('userId', 'email name');
 
-   /*   console.log(allCourses);  */
+     /*  console.log(allCourses); */
 
     res.render('courses', { 
         title: 'Курсы',
