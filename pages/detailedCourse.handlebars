@@ -1,0 +1,15 @@
+
+<section class="detailed-course" style="text-align: center; padding-bottom: 30px">
+    <h1 style="margin-top: 50px;">{{course.title}}</h1>
+    <img style="height: 500px; width: 500px;" src="{{course.img}}" class="card-img-top" alt="{{course.title}}">
+    <h5 class="card-title">{{course.title}}</h5>
+    <h5 class="card-title">{{course.price}} $</h5>
+    <p class="card-text">{{course.description}}</p>
+    <form style="display: inline;" action="/cart/add" method="POST">
+        <input type="hidden" name="id" value="{{course.id}}">
+        <button class="btn btn-success">Купить</button>
+    </form>
+    <a href="/courses/{{course.id}}/edit?allow=true"  class="btn btn-outline-warning"> <img style="height: 20px; width: 17px;" src="/img/edit.svg" alt=""></a>
+    <button class="btn btn-outline-danger"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
+</section>
+
