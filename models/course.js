@@ -19,4 +19,6 @@ const course = new Schema({
     }
 })
 
+
+
 module.exports = model('Course', course)
