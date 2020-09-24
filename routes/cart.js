@@ -24,7 +24,7 @@ router.post('/cart/add', async (req, res)=>{
    /*  console.log(req.body); */
     const course = await Course.findById(req.body.id);
 
-    req.user.addToCart(course);              
+    await req.user.addToCart(course);              
     res.redirect('/cart');
 })
 
@@ -58,9 +58,10 @@ router.delete('/cart/remove/:id', async (req, res)=>{
 })
 
 router.post('/cart/deleteAll', async (req, res)=>{   
+    await req.user.deleteAll();
 
-    /* await Cart.deleteAll();     
-    res.redirect('/cart'); */
+    res.redirect('/cart');
+
 })
 
 module.exports = router
