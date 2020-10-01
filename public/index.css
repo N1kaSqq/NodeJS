@@ -118,3 +118,7 @@ tr td {
     padding-top: 20px;
     font-size: 25px;
 }
+
+.cart-forms {
+    display: inline;
+}

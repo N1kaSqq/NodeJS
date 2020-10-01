@@ -31,7 +31,6 @@ app.set('views', 'pages')
 mongoose.set('useFindAndModify', false);
 
 app.use(async (req, res, next)=>{
-
     try {
         const user = await User.findById('5f6875b0b20a9250b8cee1a7');
         req.user = user;
