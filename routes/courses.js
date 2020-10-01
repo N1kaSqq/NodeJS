@@ -76,4 +76,17 @@ router.post('/courses/remove', async (req, res)=>{
     }
 })
 
+router.delete('/courses/remove/:id', async (req, res)=>{
+    try {
+        await Course.deleteOne({
+            _id: req.params.id, 
+        })
+
+        const allCourses = await Course.find();
+        res.json(allCourses);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = router
