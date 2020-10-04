@@ -65,7 +65,7 @@ userSchema.methods.removeFromCart = function(id) {
     return this.save()
 }
 
-userSchema.methods.deleteAll = function(){
+userSchema.methods.clearCart = function(){
     let cart = {
         items: [],
     }

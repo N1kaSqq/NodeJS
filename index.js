@@ -14,6 +14,8 @@ const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
 const aboutRoutes = require('./routes/about')
 const cartRoutes = require('./routes/cart')
+const ordersRoutes = require('./routes/orders')
+/* https://www.youtube.com/watch?v=AfypOVaB5r0 сделать оплату */
 
 /* const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -49,6 +51,7 @@ app.use(aboutRoutes);
 app.use(coursesRoutes);
 app.use(addRoutes);
 app.use(cartRoutes);
+app.use(ordersRoutes);
 
 const MongoURL = `mongodb+srv://Nikita:Ea7dP4H57g43Lihn@cluster0.tegas.mongodb.net/Shop`
 const PORT = process.env.PORT || 3000 ;

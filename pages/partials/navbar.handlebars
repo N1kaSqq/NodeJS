@@ -49,6 +49,25 @@
         </li>
       {{/if}}
     </ul>
+
+  {{#if isOrders}}
+    <span class="navbar-text">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a style="font-size: 20px;" class="nav-link" href="/orders">Заказы</a>
+        </li>
+      </ul>
+    </span>
+  {{else}}
+    <span class="navbar-text">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a style="font-size: 20px;" class="nav-link" href="/orders">Заказы</a>
+        </li>
+      </ul>
+    </span>
+  {{/if}}
+
      <span class="navbar-text">
         <a class="nav-link" style="font-size: 20px; color: rgb(175, 241, 250);" href="/cart">Корзина</a>
     </span>

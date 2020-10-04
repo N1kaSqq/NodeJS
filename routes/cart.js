@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const { count } = require('./../models/course')
+/* const { count } = require('./../models/course') */
 const Course = require('./../models/course')
 const router = Router()
 
@@ -58,7 +58,7 @@ router.delete('/cart/remove/:id', async (req, res)=>{
 })
 
 router.post('/cart/deleteAll', async (req, res)=>{   
-    await req.user.deleteAll();
+    await req.user.clearCart();
 
     res.redirect('/cart');
 
