@@ -10,13 +10,18 @@
             <h5 class="card-title">{{title}}</h5>
             <h5 class="card-title">{{price}} $</h5>
             <p class="card-text">{{description}}</p>
-            <form style="display: inline;" action="/cart/add" method="POST">
-                <input type="hidden" name="id" value="{{id}}">
-                <button class="btn btn-success">Купить</button>
-            </form>
-            <a href="/courses/{{id}}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
-            <a href="/courses/{{id}}/edit?allow=true"  class="btn btn-outline-warning"> <img style="height: 20px; width: 17px;" src="/img/edit.svg" alt=""></a>
-            <button class="btn btn-outline-danger js-remove" data-id="{{_id}}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
+            {{#if @root.isAuth}}
+                <form style="display: inline;" action="/cart/add" method="POST">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button class="btn btn-success">Купить</button>
+                </form>
+                <a href="/courses/{{id}}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
+                <a href="/courses/{{id}}/edit?allow=true"  class="btn btn-outline-warning"> <img style="height: 20px; width: 17px;" src="/img/edit.svg" alt=""></a>
+                <button class="btn btn-outline-danger js-remove" data-id="{{_id}}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
+            {{else}}
+                <button class="btn btn-success" disabled>Купить</button>
+                <a href="/courses/{{id}}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
+            {{/if}}
         </div>
     </div>
      {{/each}}

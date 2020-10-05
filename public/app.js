@@ -111,3 +111,28 @@ if ($courses) {
     })
 }
 
+/* login- */
+
+document.querySelectorAll('.login-btn').forEach(el => {
+        el.addEventListener('click', (event)=>{
+            document.querySelector('.login-form-signin').classList.toggle('login-form-signin-left');
+            document.querySelector('.login-form-signup').classList.toggle('login-form-signup-left');
+            document.querySelector('.login-frame').classList.toggle('login-frame-long');
+            document.querySelector('.login-signup-inactive').classList.toggle('login-signup-active');
+            document.querySelector('.login-signin-active').classList.toggle('login-signin-inactive');
+            document.querySelector('.login-forgot').classList.toggle('login-forgot-left');
+        })
+})
+
+
+
+if (document.URL === 'http://localhost:3000/auth/login#register') {
+    document.querySelector('.login-form-signin').classList.toggle('login-form-signin-left');
+            document.querySelector('.login-form-signup').classList.toggle('login-form-signup-left');
+            document.querySelector('.login-frame').classList.toggle('login-frame-long');
+            document.querySelector('.login-signup-inactive').classList.toggle('login-signup-active');
+            document.querySelector('.login-signin-active').classList.toggle('login-signin-inactive');
+            document.querySelector('.login-forgot').classList.toggle('login-forgot-left');
+} else {
+    
+}
