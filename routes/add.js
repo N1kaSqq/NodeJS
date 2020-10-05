@@ -1,10 +1,11 @@
 const {Router} = require('express')
 const Course = require('../models/course')
+const authRequired = require('../middleware/auth')
 const router = Router()
 
 
 
-router.get('/add', (req, res)=>{
+router.get('/add', authRequired, (req, res)=>{
     res.render('add', {
         title: 'Добавить курс',
         isAdd: true,
@@ -12,7 +13,7 @@ router.get('/add', (req, res)=>{
 })
 
 
-router.post('/add', async (req, res) => {
+router.post('/add', authRequired, async (req, res) => {
     req.body.image == '' ? req.body.image = '/img/default.jpg' : null
     req.body.description == '' ? req.body.description = 'Нет описания...' : null
     /* const course = new Course(req.body.title, req.body.price, req.body.image, req.body.description); */ // file DB

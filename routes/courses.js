@@ -1,14 +1,12 @@
 const {Router} = require('express')
 const Course = require('../models/course')
+const authRequired = require('../middleware/auth')
 const router = Router()
 
 router.get('/courses', async (req, res) => {
-
     /* const allCourses = await Course.getAll(); */ // file DB
     const allCourses = await Course.find().populate('userId', 'email name');
-
-     /*  console.log(allCourses); */
-
+    /*  console.log(allCourses); */
     res.render('courses', { 
         title: 'Курсы',
         isCourses: true,
@@ -16,7 +14,7 @@ router.get('/courses', async (req, res) => {
     })
 })
 
-router.get('/courses/:id/edit', async (req, res)=>{
+router.get('/courses/:id/edit', authRequired,  async (req, res)=>{
     /* console.log(req.query); */
     /* res.redirect('/') */
     if(!req.query.allow){
@@ -37,7 +35,7 @@ router.get('/courses/:id/edit', async (req, res)=>{
 
 })
 
-router.post('/courses/edit', async (req, res)=>{
+router.post('/courses/edit', authRequired, async (req, res)=>{
     /* console.log(req.body); */
     /* const updatedCourse = req.body  //курс который нужно обновить 
     await Course.editCourse(updatedCourse); */
@@ -65,7 +63,7 @@ router.get('/courses/:id', async (req, res) => {
 
 })
 
-router.post('/courses/remove', async (req, res)=>{
+router.post('/courses/remove', authRequired, async (req, res)=>{
     try {
         await Course.deleteOne({
             _id: req.body.id, 
@@ -73,6 +71,19 @@ router.post('/courses/remove', async (req, res)=>{
         res.redirect('/courses')
     } catch (error) {
        console.log(error); 
+    }
+})
+
+router.delete('/courses/remove/:id', authRequired, async (req, res)=>{
+    try {
+        await Course.deleteOne({
+            _id: req.params.id, 
+        })
+
+        const allCourses = await Course.find();
+        res.json(allCourses);
+    } catch (error) {
+        console.log(error);
     }
 })
 

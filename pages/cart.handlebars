@@ -27,8 +27,10 @@
   </table>
 
   <p class="cart-total"><strong>Цена:</strong> <span class="price">{{price}}</span>$</p>
-
-  <form action="/cart/deleteAll" method="POST">
+<form class="cart-forms" action="/order" method="POST">
+    <button class="btn btn-success">Сделать заказ</button>
+ </form>  
+  <form class="cart-forms" action="/cart/deleteAll" method="POST">
     <button class="btn btn-danger">Очистить корзину</button>
  </form>
 {{else}}
