@@ -8,7 +8,7 @@
     </div>
     <div ng-app ng-init="checked = false">
 			<form class="login-form-signin" action="/auth/login" method="post" name="form">
-                <label class="login-label" for="username">Email</label>
+                <label class="login-label" for="email">Email</label>
                 <input class="login-form-styling" type="text" name="email" placeholder="" required />
                 <label class="login-label" for="password">Пароль</label>
                 <input class="login-form-styling" type="password" name="password" placeholder="" required />
@@ -19,8 +19,8 @@
 			</form>
         
 			<form class="login-form-signup" action="/auth/register" method="post" name="form">
-                <label class="login-label" for="fullname">Имя</label>
-                <input class="login-form-styling" type="text" name="fullname" placeholder="" required />
+                <label class="login-label" for="name">Имя</label>
+                <input class="login-form-styling" type="text" name="name" placeholder="" required />
                 <label class="login-label" for="email">Email</label>
                 <input class="login-form-styling" type="text" name="email" placeholder="" required />
                 <label class="login-label" for="password">Пароль</label>
