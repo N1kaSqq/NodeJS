@@ -42,11 +42,13 @@
                 </div>
 
                 <input type="hidden" name="id" value="{{course.id}}">
+                <input type="hidden" name="_csrf" value="{{csrf}}">
 
             <button style="margin-top: 30px;" class="btn btn-outline-primary">Редактировать курс</button>
         </form> 
         <form style="display: inline;" action="/courses/remove" method="POST">
             <input type="hidden" name="id" value="{{course._id}}">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
             <button style="margin-top: 30px; margin-left: 10px;" class="btn btn-outline-danger">Удалить курс</button>
         </form>
         

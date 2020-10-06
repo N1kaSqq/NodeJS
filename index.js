@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose')
 const Handlebars = require('handlebars')
+const csrf = require('csurf')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require("connect-mongodb-session")(session)
@@ -64,6 +65,7 @@ app.use(session({
     saveUninitialized: false,
     store
 }))
+app.use(csrf())
 app.use(varMiddleware) // в ответе сервера теперь есть переменная res.locals.isAuth
 app.use(userMiddleware) // при регистрации req.session.user заносится в req.user (модель mongo user.js)
 

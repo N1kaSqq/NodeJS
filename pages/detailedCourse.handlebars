@@ -7,11 +7,13 @@
     <p class="card-text">{{course.description}}</p>
     <form style="display: inline;" action="/cart/add" method="POST">
         <input type="hidden" name="id" value="{{course.id}}">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
         <button class="btn btn-success">Купить</button>
     </form>
     <a href="/courses/{{course._id}}/edit?allow=true"  class="btn btn-outline-warning"> <img style="height: 20px; width: 17px;" src="/img/edit.svg" alt=""></a>
     <form style="display: inline;" action="/courses/remove" method="POST">
         <input type="hidden" name="id" value="{{course._id}}">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
         <button class="btn btn-outline-danger"><img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
     </form>
 </section>

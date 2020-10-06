@@ -32,9 +32,13 @@ if ($cart) {
     $cart.addEventListener('click', event => {
         if (event.target.classList.contains('js-remove') || event.target.parentElement.classList.contains('js-remove')) {
             const id = event.target.dataset.id ? event.target.dataset.id : event.target.parentElement.dataset.id;
+            const csrf = event.target.dataset.csrf ? event.target.dataset.csrf : event.target.parentElement.dataset.csrf;
             try {
                 fetch('/cart/remove/' + id, {
                     method: 'delete',
+                    headers: {
+                        'X-XSRF-TOKEN': csrf
+                    },
                 }).then((res)=>{
                     return res.json();
                 }).then((cart)=>{
@@ -71,10 +75,13 @@ if ($courses) {
     $courses.addEventListener('click', (event)=>{
         if (event.target.classList.contains('js-remove') || event.target.parentElement.classList.contains('js-remove')) {
             const id = event.target.dataset.id ? event.target.dataset.id : event.target.parentElement.dataset.id;
-
+            const csrf = event.target.dataset.csrf ? event.target.dataset.csrf : event.target.parentElement.dataset.csrf;
             try {
                 fetch(`/courses/remove/${id}`, {
                     method: 'delete',
+                    headers: {
+                        'X-XSRF-TOKEN': csrf
+                    },
                 }).then(res => res.json())
                 .then((NewCourses)=>{
                     if (NewCourses.length) {

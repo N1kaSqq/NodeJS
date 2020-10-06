@@ -12,6 +12,7 @@
                 <input class="login-form-styling" type="text" name="email" placeholder="" required />
                 <label class="login-label" for="password">Пароль</label>
                 <input class="login-form-styling" type="password" name="password" placeholder="" required />
+                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="login-btn-animate">
                     <a class="login-btn-signin">Войти</a>
                 </button>
@@ -27,6 +28,7 @@
                 <input class="login-form-styling" type="password" name="password" placeholder="" required />
                 <label class="login-label" for="confirmpassword">Подтвердите пароль</label>
                 <input class="login-form-styling" type="password" name="confirmpassword" placeholder="" required />
+                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="login-btn-animate">
                     <a class="login-btn-signin">Зарегистрироваться</a>
                 </button>

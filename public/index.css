@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+  background-image: linear-gradient(to bottom right, rgb(101, 115, 255), rgb(111, 114, 247), rgb(120, 114, 239), rgb(130, 113, 231), rgb(139, 112, 223), rgb(149, 111, 215), rgb(158, 111, 208), rgb(168, 110, 200), rgb(177, 109, 192), rgb(187, 108, 184), rgb(196, 108, 176), rgb(206, 107, 168));
+  min-height: 100vh;
+} 
 
 .navbar-brand {
     font-size: 25px;
@@ -26,10 +30,11 @@ h2 {
     margin: 50px 0;
     display: block;
     width: 330px;
+    background-color: #ffffff;
+    transition: 250ms ;
 }
 
 .category:hover {
-    transition: 200ms ;
     transform: scale(1.03);
     box-shadow: 0 16px 30px rgba(0,0,0,0.45), 0 10px 10px rgba(0,0,0,0.42);
 }
@@ -67,12 +72,14 @@ h2 {
 
 .edit-card {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    background-color: #fff;
     margin: 50px 0;
     display: block;
     min-width: 330px;
     max-width: 660px;
     width: 100%;
     padding: 30px;
+    border-radius: 5px;
 }
 
 table {
@@ -142,6 +149,7 @@ tr td {
   }
   
   .login-frame {
+    background-color: #fff;
     height: 575px;
     width: 430px;
     background-size: cover;

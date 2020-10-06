@@ -19,7 +19,7 @@
         <td>{{count}}</td>
         <td>
             <a href="/courses/{{_id}}" target="_blank" class="btn btn-outline-warning">Подробнее</a>
-            <button class="btn btn-outline-danger js-remove" data-id="{{_id}}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
+            <button class="btn btn-outline-danger js-remove" data-id="{{_id}}" data-csrf="{{@root.csrf}}"> <img style="height: 20px; width: 17px;" src="/img/trash.svg" alt=""></button>
         </td>
       </tr>
       {{/each}}
@@ -27,11 +27,13 @@
   </table>
 
   <p class="cart-total"><strong>Цена:</strong> <span class="price">{{price}}</span>$</p>
-<form class="cart-forms" action="/order" method="POST">
+  <form class="cart-forms" action="/order" method="POST">
     <button class="btn btn-success">Сделать заказ</button>
+    <input type="hidden" name="_csrf" value="{{csrf}}">
  </form>  
   <form class="cart-forms" action="/cart/deleteAll" method="POST">
     <button class="btn btn-danger">Очистить корзину</button>
+    <input type="hidden" name="_csrf" value="{{csrf}}">
  </form>
 {{else}}
   <p>Корзина пуста</p>
