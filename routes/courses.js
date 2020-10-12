@@ -53,7 +53,6 @@ router.get('/courses/:id', async (req, res) => {
 
     try {
         res.render('detailedCourse', {
-            layout : 'empty',
             title: course.title,
             course,
         })

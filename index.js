@@ -4,11 +4,11 @@ const fs = require('fs');
 const mongoose = require('mongoose')
 const Handlebars = require('handlebars')
 const csrf = require('csurf')
+const flash = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require("connect-mongodb-session")(session)
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
-const User = require('./models/user')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 
@@ -66,6 +66,7 @@ app.use(session({
     store
 }))
 app.use(csrf())
+app.use(flash())
 app.use(varMiddleware) // в ответе сервера теперь есть переменная res.locals.isAuth
 app.use(userMiddleware) // при регистрации req.session.user заносится в req.user (модель mongo user.js)
 

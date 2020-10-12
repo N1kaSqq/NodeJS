@@ -6,7 +6,9 @@ const User = require('../models/user')
 router.get('/auth/login', async (req, res)=>{
     res.render('auth/login', {
         title: 'Вход',
-        layout : 'empty',
+        layout: 'empty',
+        loginError: req.flash('loginError'),
+        registerError: req.flash('registerError')
     }) 
 })
 
@@ -20,10 +22,10 @@ router.get('/auth/logout', async (req, res)=>{
 router.post('/auth/login', async (req, res)=>{
     try {
         const {email, password} = req.body;
-        const candidate = await User.findOne({ email })
+        const candidate = await User.findOne({ email });
 
         if (candidate) {
-            const areSame = await bcrypt.compare(password, candidate.password) 
+            const areSame = await bcrypt.compare(password, candidate.password); 
             if (areSame) {
                 req.session.user = candidate;
                 req.session.isAuth = true;
@@ -34,17 +36,18 @@ router.post('/auth/login', async (req, res)=>{
                     res.redirect('/');
                 })
             } else {
-                res.redirect('/auth/login#login')
+                req.flash('loginError', 'Неверный пароль!');
+                res.redirect('/auth/login#login');
             }
 
         } else {
-            res.redirect('/auth/login#login')
+            req.flash('loginError', 'Такого пользователя не существует!');
+            res.redirect('/auth/login#login');
         }
     } catch (error) {
         console.log(error);
     }
 })
-
 
 router.post('/auth/register', async (req, res)=>{
     try {
@@ -52,7 +55,8 @@ router.post('/auth/register', async (req, res)=>{
         const candidate = await User.findOne({ email })
         
         if (candidate) {
-            res.redirect('/auth/login#register')
+            req.flash('registerError', 'Пользователь с таким email уже существует!');
+            res.redirect('/auth/login#register');
         } else {
             const hashPassword = await bcrypt.hash(password, 12)
             const user = new User({

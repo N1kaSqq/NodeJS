@@ -138,6 +138,11 @@ tr td {
     padding-bottom: 30px;
 }
 
+.auth-alert {
+  position: absolute;
+  transform: translateY(-50px);
+  color: red;
+}
 
 /* *********************************************************************************8 */
 
