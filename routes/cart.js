@@ -5,6 +5,7 @@ const authRequired = require('../middleware/auth')
 const router = Router()
 
 function mapCartItems(cart){
+    // нужна проверка на item.courseId !null
     return cart.items.map((item)=>{
           return  {
                 ...item.courseId._doc,
