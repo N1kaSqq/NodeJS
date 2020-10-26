@@ -52,6 +52,12 @@ router.post('/auth/login', async (req, res)=>{
 router.post('/auth/register', async (req, res)=>{
     try {
         const {name, email, password, confirmpassword} = req.body;
+
+         if (password !== confirmpassword) {
+            req.flash('registerError', 'Пароли не совпадают');
+            return res.redirect('/auth/login#register');
+        } 
+
         const candidate = await User.findOne({ email })
         
         if (candidate) {
